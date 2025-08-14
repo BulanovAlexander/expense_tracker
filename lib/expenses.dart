@@ -32,7 +32,6 @@ class _ExpensesState extends State<Expenses> {
       body: Column(
         children: <Widget>[
           Text('The chart'),
-          Text('Expenses list...'),
         ],
       ),
     );
