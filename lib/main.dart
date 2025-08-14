@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:expense_tracker/expenses.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:expense_tracker/widgets/expenses/expenses.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Инициализируем русскую локаль перед использованием DateFormat
+  await initializeDateFormatting('ru_RU', null);
+
   runApp(const MainApp());
 }
 
