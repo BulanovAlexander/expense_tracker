@@ -1,14 +1,5 @@
-import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart';
-
-final currencyFormatter = NumberFormat.currency(
-  locale: 'ru_RU',
-  symbol: '₽',
-  decimalDigits: 2,
-);
-
-final dateFormatter = DateFormat('dd.MM.yyyy', 'ru_RU');
 
 class ExpensesItem extends StatelessWidget {
   const ExpensesItem({
@@ -37,15 +28,15 @@ class ExpensesItem extends StatelessWidget {
             ),
             Row(
               children: <Widget>[
-                Text(currencyFormatter.format(expense.amount)),
+                Text(expense.formattedCurrency),
                 const Spacer(),
                 Row(
                   children: <Widget>[
-                    const Icon(Icons.alarm),
+                    Icon(categoryIcons[expense.category]),
                     const SizedBox(
                       width: 8.0,
                     ),
-                    Text(dateFormatter.format(expense.date)),
+                    Text(expense.formattedDate),
                   ],
                 ),
               ],
