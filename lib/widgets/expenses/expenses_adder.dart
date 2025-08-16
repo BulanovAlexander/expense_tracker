@@ -10,10 +10,12 @@ class ExpensesAdder extends StatefulWidget {
 }
 
 class _ExpensesAdderState extends State<ExpensesAdder> {
-  var _title = '';
+  final _titleController = TextEditingController();
 
-  void _handleTitleChange(String value) {
-    _title = value;
+  @override
+  void dispose() {
+    _titleController.dispose();
+    super.dispose();
   }
 
   @override
@@ -23,17 +25,17 @@ class _ExpensesAdderState extends State<ExpensesAdder> {
       child: Column(
         children: <Widget>[
           TextField(
+            controller: _titleController,
             maxLength: 50,
             decoration: const InputDecoration(
               label: Text('Название'),
             ),
-            onChanged: _handleTitleChange,
           ),
           Row(
             children: <Widget>[
               ElevatedButton(
                 onPressed: () {
-                  print(_title);
+                  print(_titleController.text);
                 },
                 child: const Text(
                   'Сохранить',
