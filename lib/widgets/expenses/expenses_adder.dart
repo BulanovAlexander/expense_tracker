@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ExpensesAdder extends StatefulWidget {
   const ExpensesAdder({super.key});
@@ -11,10 +12,12 @@ class ExpensesAdder extends StatefulWidget {
 
 class _ExpensesAdderState extends State<ExpensesAdder> {
   final _titleController = TextEditingController();
+  final _amountController = TextEditingController();
 
   @override
   void dispose() {
     _titleController.dispose();
+    _amountController.dispose();
     super.dispose();
   }
 
@@ -31,15 +34,35 @@ class _ExpensesAdderState extends State<ExpensesAdder> {
               label: Text('Название'),
             ),
           ),
+          TextField(
+            controller: _amountController,
+            keyboardType: TextInputType.number,
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(
+                  RegExp(r'^\d*\.?\d{0,2}')), // разрешает только цифры
+            ],
+            decoration: const InputDecoration(
+              prefixText: '₽ ',
+              label: Text('Сумма'),
+            ),
+          ),
+          const SizedBox(
+            height: 16.0,
+          ),
           Row(
             children: <Widget>[
               ElevatedButton(
                 onPressed: () {
+                  print(_amountController.text);
                   print(_titleController.text);
                 },
                 child: const Text(
                   'Сохранить',
                 ),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: const Text('Отменить'),
               ),
             ],
           ),
