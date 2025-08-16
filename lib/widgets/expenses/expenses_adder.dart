@@ -10,17 +10,36 @@ class ExpensesAdder extends StatefulWidget {
 }
 
 class _ExpensesAdderState extends State<ExpensesAdder> {
+  var _title = '';
+
+  void _handleTitleChange(String value) {
+    _title = value;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(16.0),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         children: <Widget>[
           TextField(
             maxLength: 50,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               label: Text('Название'),
             ),
+            onChanged: _handleTitleChange,
+          ),
+          Row(
+            children: <Widget>[
+              ElevatedButton(
+                onPressed: () {
+                  print(_title);
+                },
+                child: const Text(
+                  'Сохранить',
+                ),
+              ),
+            ],
           ),
         ],
       ),
