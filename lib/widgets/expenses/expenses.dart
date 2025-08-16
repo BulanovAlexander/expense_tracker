@@ -27,6 +27,16 @@ class _ExpensesState extends State<Expenses> {
     ),
   ];
 
+  void _openAddExpenseModal() {
+    showModalBottomSheet(
+        context: context,
+        builder: (ctx) {
+          return const Text(
+            'Modal bottom Hello',
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +49,7 @@ class _ExpensesState extends State<Expenses> {
         ),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: _openAddExpenseModal,
             icon: const Icon(Icons.add),
           ),
         ],
